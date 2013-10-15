@@ -12,6 +12,7 @@ else
   FasterCSV=CSV
 end
 require 'open-uri'
+require 'openssl'
 
 module NewRelicHaproxyAgent
   
@@ -47,7 +48,7 @@ module NewRelicHaproxyAgent
       found_proxies = []
       possible_proxies = []
       begin
-        FasterCSV.parse(open(uri, :http_basic_authentication => [user, password]), :headers => true) do |row|
+        FasterCSV.parse(open(uri, :http_basic_authentication => [user, password]), :headers => true, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE) do |row|
           next if proxy_type and proxy_type != row["svname"] # ensure the proxy type (if provided) matches
           possible_proxies << row["# pxname"] # used in error message
           next unless proxy.to_s.strip.downcase == row["# pxname"].downcase # ensure the proxy name matches
