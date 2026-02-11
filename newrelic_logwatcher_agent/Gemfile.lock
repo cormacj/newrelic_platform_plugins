@@ -1,13 +1,20 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    faraday (0.8.7)
-      multipart-post (~> 1.1)
+    faraday (2.14.1)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
     json (2.6.3)
-    multipart-post (1.2.0)
+    logger (1.7.0)
+    net-http (0.9.1)
+      uri (>= 0.11.1)
     newrelic_plugin (1.0.2)
       faraday (>= 0.8.1)
       json
+    uri (1.1.1)
 
 PLATFORMS
   ruby
